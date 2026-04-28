@@ -1,0 +1,19 @@
+{% if section.settings.text != blank %}
+  <div class="announcement">
+    {{ section.settings.text }}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Barra de anuncio",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto",
+      "default": "Envío gratis en pedidos superiores a 49 €"
+    }
+  ]
+}
+{% endschema %}

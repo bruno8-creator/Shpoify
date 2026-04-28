@@ -1,0 +1,98 @@
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      <p>{{ section.settings.text }}</p>
+    </div>
+
+    <div class="collection-grid">
+      {% for block in section.blocks %}
+        {% assign collection = block.settings.collection %}
+        <a class="collection-card" href="{{ collection.url | default: '/collections' }}" {{ block.shopify_attributes }}>
+          <div class="collection-card__media">
+            {% if collection.featured_image %}
+              {{ collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: collection.title }}
+            {% elsif block.settings.image %}
+              {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {% else %}
+              <div class="placeholder-media">{{ 'collection-1' | placeholder_svg_tag }}</div>
+            {% endif %}
+          </div>
+          <div class="collection-card__content">
+            <h3>{{ collection.title | default: block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Colecciones destacadas",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto superior",
+      "default": "Comprar por estancia"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Soluciones para cada rincón"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "Organiza la cocina, renueva el baño y suma detalles que hacen la vida diaria más agradable."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Colección",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Colección"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen alternativa"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Cocina"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Accesorios prácticos para cocinar y ordenar mejor."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Colecciones destacadas",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection", "settings": { "title": "Baño", "text": "Pequeñas mejoras para un baño más limpio y cuidado." } },
+        { "type": "collection", "settings": { "title": "Orden", "text": "Cestas, cajas y soluciones para ganar espacio." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

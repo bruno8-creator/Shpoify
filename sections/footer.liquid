@@ -1,0 +1,81 @@
+<footer class="site-footer">
+  <div class="page-width">
+    <div class="site-footer__grid">
+      <div>
+        <h2>{{ section.settings.brand_title }}</h2>
+        <p>{{ section.settings.brand_text }}</p>
+      </div>
+
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          {% if block.settings.menu != blank %}
+            <ul>
+              {% for link in block.settings.menu.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>{{ block.settings.text }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="site-footer__bottom">
+      &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_title",
+      "label": "Título",
+      "default": "Casa Nube"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Texto",
+      "default": "Productos pensados para que cada rincón de casa sea más cómodo, ordenado y bonito."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Columna",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Comprar"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menú"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto alternativo",
+          "default": "Organización, cocina, baño y decoración para el día a día."
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "column" },
+      { "type": "column", "settings": { "title": "Ayuda", "text": "Envíos, devoluciones y atención al cliente." } },
+      { "type": "column", "settings": { "title": "Contacto", "text": "Escríbenos para cualquier duda sobre tu pedido." } }
+    ]
+  }
+}
+{% endschema %}

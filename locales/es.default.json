@@ -1,0 +1,27 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Saltar al contenido"
+    },
+    "search": {
+      "title": "Buscar",
+      "placeholder": "Buscar productos",
+      "submit": "Buscar"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Añadir al carrito",
+      "sold_out": "Agotado",
+      "quantity": "Cantidad",
+      "variant": "Opciones"
+    }
+  },
+  "cart": {
+    "title": "Carrito",
+    "empty": "Tu carrito está vacío.",
+    "checkout": "Finalizar compra",
+    "subtotal": "Subtotal",
+    "update": "Actualizar"
+  }
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Identidad visual",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Color principal",
+        "default": "#2f4f43"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Color secundario",
+        "default": "#f3efe6"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Color de acento",
+        "default": "#c9824b"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texto",
+        "default": "#1f2a27"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Texto secundario",
+        "default": "#63716b"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Fondo",
+        "default": "#fffdf7"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Superficie",
+        "default": "#ffffff"
+      }
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+<section class="page-template">
+  <div class="page-width">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Colección</div>
+        <h1>{{ collection.title }}</h1>
+      </div>
+      {% if collection.description != blank %}
+        <p>{{ collection.description | strip_html }}</p>
+      {% endif %}
+    </div>
+
+    {% paginate collection.products by 12 %}
+      <div class="product-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          <div class="empty-state">Esta colección todavía no tiene productos.</div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <nav class="section-spacing" aria-label="Paginación">
+          {{ paginate | default_pagination }}
+        </nav>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Colección principal"
+}
+{% endschema %}

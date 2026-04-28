@@ -1,0 +1,48 @@
+<section class="trust-row">
+  <div class="page-width">
+    <div class="trust-row__inner">
+      {% for block in section.blocks %}
+        <div class="trust-item" {{ block.shopify_attributes }}>
+          <strong>{{ block.settings.title }}</strong>
+          <span>{{ block.settings.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Beneficios",
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Envío rápido"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Entrega preparada para que recibas tu pedido cuanto antes."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beneficios",
+      "blocks": [
+        { "type": "benefit" },
+        { "type": "benefit", "settings": { "title": "Cambios sencillos", "text": "Compra con tranquilidad y soporte cercano." } },
+        { "type": "benefit", "settings": { "title": "Selección cuidada", "text": "Productos funcionales con una estética limpia." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

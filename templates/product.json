@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product"
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "También te puede gustar"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
+  },
+  "order": [
+    "main",
+    "featured",
+    "newsletter"
+  ]
+}

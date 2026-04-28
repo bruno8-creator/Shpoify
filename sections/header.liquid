@@ -1,0 +1,50 @@
+<header class="site-header">
+  <div class="site-header__inner page-width">
+    <a class="site-logo" href="{{ routes.root_url }}">
+      {% if section.settings.logo_text != blank %}
+        {{ section.settings.logo_text }}
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+    </a>
+
+    <nav class="site-nav" aria-label="Navegación principal">
+      {% if section.settings.menu != blank %}
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="{{ routes.root_url }}">Inicio</a>
+        <a href="/collections">Colecciones</a>
+        <a href="/pages/sobre-nosotros">Sobre nosotros</a>
+        <a href="/pages/contacto">Contacto</a>
+      {% endif %}
+    </nav>
+
+    <div class="header-actions">
+      <a href="{{ routes.search_url }}">Buscar</a>
+      <a href="{{ routes.cart_url }}" aria-label="Carrito">
+        Carrito <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Cabecera",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Nombre visible",
+      "default": "Casa Nube"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú"
+    }
+  ]
+}
+{% endschema %}

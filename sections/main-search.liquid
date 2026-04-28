@@ -1,0 +1,30 @@
+<section class="page-template">
+  <div class="page-width">
+    <div class="section-heading">
+      <h1>{{ 'general.search.title' | t }}</h1>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="product-form">
+      <input class="input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}">
+      <button class="button" type="submit">{{ 'general.search.submit' | t }}</button>
+    </form>
+
+    {% if search.performed %}
+      <div class="product-grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            {% render 'product-card', product: item %}
+          {% endif %}
+        {% else %}
+          <div class="empty-state">No hemos encontrado resultados para esa búsqueda.</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Búsqueda principal"
+}
+{% endschema %}
