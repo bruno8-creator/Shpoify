@@ -9,15 +9,42 @@
           <div class="placeholder-media">{{ 'product-1' | placeholder_svg_tag }}</div>
         {% endif %}
       </div>
+
+      {% if product.images.size > 1 %}
+        <div class="product__thumbs" aria-label="Galería de producto">
+          {% for image in product.images limit: 6 %}
+            <a class="product__thumb" href="{{ image | image_url: width: 1400 }}">
+              {% assign thumb_alt = image.alt | default: product.title %}
+              {{ image | image_url: width: 220 | image_tag: loading: 'lazy', alt: thumb_alt }}
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
 
     <div class="product__info">
-      <div class="eyebrow">{{ product.vendor }}</div>
+      <div class="product__badge-row">
+        <span class="product__badge">Listo para casa</span>
+        {% if product.available %}
+          <span class="product__badge product__badge--light">En stock</span>
+        {% endif %}
+      </div>
       <h1 class="product__title">{{ product.title }}</h1>
       <div class="product__price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</div>
 
-      <div class="rte">
-        {{ product.description }}
+      <div class="product__quick-points">
+        <div>
+          <strong>Protege superficies</strong>
+          <span>Ayuda a evitar marcas de calor y humedad.</span>
+        </div>
+        <div>
+          <strong>Silicona flexible</strong>
+          <span>Fácil de limpiar, guardar y reutilizar.</span>
+        </div>
+        <div>
+          <strong>Agarre antideslizante</strong>
+          <span>Ranuras diseñadas para vasos, tazas y termos.</span>
+        </div>
       </div>
 
       {% form 'product', product, class: 'product-form' %}
@@ -42,7 +69,7 @@
         {% endunless %}
 
         <label>
-          {{ 'products.product.quantity' | t }}
+            {{ 'products.product.quantity' | t }}
           <input class="input quantity-input" type="number" name="quantity" value="1" min="1">
         </label>
 
@@ -54,6 +81,31 @@
           {% endif %}
         </button>
       {% endform %}
+
+      <div class="product__service">
+        <div>
+          <strong>Envío cuidado</strong>
+          <span>Preparado para llegar protegido.</span>
+        </div>
+        <div>
+          <strong>Compra tranquila</strong>
+          <span>Pago seguro y soporte cercano.</span>
+        </div>
+      </div>
+
+      <details class="product__details" open>
+        <summary>Descripción</summary>
+        <div class="rte">
+          {{ product.description }}
+        </div>
+      </details>
+
+      <details class="product__details">
+        <summary>Uso y cuidado</summary>
+        <div class="rte">
+          <p>Límpialo con agua y jabón suave. Déjalo secar antes de guardarlo para mantenerlo en buen estado durante más tiempo.</p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
